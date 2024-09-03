@@ -1,0 +1,39 @@
+:root {
+    --primary-color: #327994;
+}
+
+.app-header{
+    background: var(--primary-color);
+}
+
+.logo-ayuntamiento{
+    background-color: var(--primary-color);
+    /* background-image: var(--logo-image); */
+}
+
+.sidebar .sidebar-inner-header{
+    background-color: var(--primary-color)!important;
+}
+.sidebar .sidebar-inner-header:hover{
+    background-color: var(--primary-color);
+}
+
+.app-footer{
+    background: var(--primary-color)!important;
+}
+
+.sidebar-lg-show.sidebar-fixed .app-footer{
+    background: var(--primary-color);
+}
+.sidebar .sidebar-nav .nav .nav-item .nav-link.active::after {
+    border-color: transparent var(--primary-color) transparent transparent!important;
+}
+
+.btn-primary{
+    background-color: var(--primary-color)!important;
+}
+
+.header-menu{
+    background: var(--primary-color)!important;
+}
+

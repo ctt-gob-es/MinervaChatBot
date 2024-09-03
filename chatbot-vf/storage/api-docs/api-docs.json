@@ -1,0 +1,1521 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentación Diputación Alicante",
+        "description": "Apis Alicante",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/storeDefaultApi": {
+            "post": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Almacena una nueva configuración por defecto",
+                "description": "Almacena una nueva configuración por defecto.",
+                "operationId": "6d074a703f1a55be74689c2d7fcacb8b",
+                "requestBody": {
+                    "description": "Datos para crear la configuración por defecto",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "type",
+                                    "name",
+                                    "value"
+                                ],
+                                "properties": {
+                                    "type": {
+                                        "description": "Tipo de configuración",
+                                        "type": "string"
+                                    },
+                                    "name": {
+                                        "description": "Nombre de la configuración",
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "description": "Valor de la configuración",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "202": {
+                        "description": "Configuración por defecto creada exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Configuración por defecto creada."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ocurrió un error inesperado al crear la configuración por defecto.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ocurrió un error inesperado."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/updateDefaultApi/{id}": {
+            "put": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Actualiza una configuración por defecto específica",
+                "description": "Actualiza una configuración por defecto específica.",
+                "operationId": "ec2bf7e973d5385ea352a33499268b2e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la configuración por defecto a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Datos para actualizar la configuración por defecto",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "value"
+                                ],
+                                "properties": {
+                                    "value": {
+                                        "description": "Nuevo valor de la configuración por defecto",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Configuración por defecto actualizada correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Configuración por defecto actualizada."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Ocurrió un error inesperado al actualizar la configuración por defecto.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Ocurrió un error inesperado."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/getRoleData": {
+            "get": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Mostrar el listado de roles",
+                "description": "Se muestra el listado de los registros solicitados.",
+                "operationId": "be38a431fb1e49ea96bd6e93a4a2d9b3",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los roles."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/getRoles": {
+            "get": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Obtener todos los roles, excluyendo SuperAdmin.",
+                "description": "Devuelve todos los roles disponibles en el sistema, excluyendo el rol SuperAdmin.",
+                "operationId": "48be71a545438b550744f5c84999998a",
+                "responses": {
+                    "200": {
+                        "description": "Lista de roles obtenidos correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "description": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado para acceder a los roles."
+                    },
+                    "422": {
+                        "description": "Error al obtener los roles.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Error al obtener los roles"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/getPermissionData": {
+            "get": {
+                "tags": [
+                    "permissions"
+                ],
+                "summary": "Obtener todos los datos de permisos.",
+                "description": "Devuelve todos los datos de permisos disponibles en el sistema.",
+                "operationId": "6ce7e5fa6dcd9c55bd75407007656afa",
+                "responses": {
+                    "200": {
+                        "description": "Datos de permisos obtenidos correctamente."
+                    },
+                    "422": {
+                        "description": "Error al obtener los datos de permisos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "Error al obtener los datos de permisos"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/createRole": {
+            "post": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Crear un nuevo rol con los permisos proporcionados.",
+                "description": "Crea un nuevo rol en la base de datos y asigna los permisos especificados.",
+                "operationId": "ce8db63b7ace9d57d173d3ba4e98357f",
+                "requestBody": {
+                    "description": "Datos del rol a crear.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "permissions"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Rol Ejemplo"
+                                    },
+                                    "permissions": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer",
+                                            "example": 1
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "El rol se creó exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Rol creado exitosamente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "El rol ya existe en la base de datos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "El rol ya existe en la base de datos"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/getRoleId/{id}": {
+            "get": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Obtiene un rol con sus permisos",
+                "description": "Obtiene un rol con sus permisos.",
+                "operationId": "e80126f6c6370298fa0bd3a0103cf929",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del rol",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Rol con sus permisos obtenidos correctamente."
+                    },
+                    "422": {
+                        "description": "Error al obtener el rol."
+                    }
+                }
+            }
+        },
+        "/api/updateRole": {
+            "post": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Actualizar un rol existente.",
+                "description": "Actualiza un rol existente en la base de datos.",
+                "operationId": "1fd69e8ca426ee17dadee1fef3b79e9c",
+                "requestBody": {
+                    "description": "Datos del rol a actualizar.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "name",
+                                    "permissions"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Nuevo Nombre de Rol"
+                                    },
+                                    "permissions": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "integer",
+                                            "example": 1
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Rol actualizado exitosamente."
+                    },
+                    "422": {
+                        "description": "El rol ingresado ya existe o los datos proporcionados son inválidos.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "message": "El rol ingresado ya existe."
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/deleteRole/{roleId}": {
+            "delete": {
+                "tags": [
+                    "roles"
+                ],
+                "summary": "Eliminar un rol existente.",
+                "description": "Elimina un rol existente en la base de datos.",
+                "operationId": "2b30d25dab01012c4680f9d42eae9b0e",
+                "responses": {
+                    "200": {
+                        "description": "Rol eliminado exitosamente."
+                    },
+                    "404": {
+                        "description": "El rol no existe."
+                    },
+                    "500": {
+                        "description": "Error al eliminar el rol."
+                    }
+                }
+            }
+        },
+        "/api/getSettingsApi": {
+            "get": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Obtener configuración ajuste general cliente",
+                "description": "Obtiene la configuración de ajuste general de cliente.",
+                "operationId": "1deebf2d0f0fd4de4a9eaf1ec1a6cc10",
+                "responses": {
+                    "200": {
+                        "description": "Configuración obtenida exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "integer"
+                                                    },
+                                                    "key": {
+                                                        "type": "string"
+                                                    },
+                                                    "value": {
+                                                        "type": "string"
+                                                    },
+                                                    "created_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    },
+                                                    "updated_at": {
+                                                        "type": "string",
+                                                        "format": "date-time"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Configuración no encontrada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Configuración no encontrada."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/updateSettingsApi": {
+            "post": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Actualiza un ajuste del sistema",
+                "description": "Actualiza un ajuste específico.",
+                "operationId": "9e2c8cd1cd7793c94ad67fe27bcae2ef",
+                "requestBody": {
+                    "description": "Datos para actualizar el ajuste",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "value"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "ID del ajuste",
+                                        "type": "integer"
+                                    },
+                                    "value": {
+                                        "description": "Nuevo valor del ajuste",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Configuración actualizada correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Configuración actualizada correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Configuración no encontrada.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Configuración no encontrada."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/getSettingsDtaApi": {
+            "get": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Muestra la configuración del cliente",
+                "operationId": "48218b4fbedcaac623681b6a9866cdbe",
+                "responses": {
+                    "200": {
+                        "description": "Configuración del cliente recuperada exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "ID de la configuración del cliente",
+                                                        "type": "integer"
+                                                    },
+                                                    "city_council_id": {
+                                                        "description": "ID del cliente",
+                                                        "type": "integer"
+                                                    },
+                                                    "setting_id": {
+                                                        "description": "ID del ajuste",
+                                                        "type": "integer"
+                                                    },
+                                                    "value": {
+                                                        "description": "Valor del ajuste",
+                                                        "type": "string"
+                                                    },
+                                                    "cityCouncil": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "ID del cliente",
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "description": "Nombre del cliente",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "setting": {
+                                                        "properties": {
+                                                            "id": {
+                                                                "description": "ID del ajuste",
+                                                                "type": "integer"
+                                                            },
+                                                            "name": {
+                                                                "description": "Nombre del ajuste",
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado."
+                    }
+                }
+            }
+        },
+        "/api/getUsersApi": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Mostrar el listado de usuarios",
+                "description": "Se muestra el listado de los registros solicitados.",
+                "operationId": "3c229d66c8b05e45dcd707bd0499fc86",
+                "responses": {
+                    "200": {
+                        "description": "Mostrar todos los usuarios."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/saveUserApi": {
+            "post": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Almacenar un nuevo usuario",
+                "description": "Almacena un nuevo usuario en la base de datos.",
+                "operationId": "22096e4938a5c68e297567e8f0b59cc8",
+                "requestBody": {
+                    "description": "Datos del usuario a almacenar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password",
+                                    "role"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "photo": {
+                                        "description": "Archivo de imagen del usuario",
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "clients": {
+                                        "type": "string",
+                                        "format": "json"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario creado exitosamente."
+                    },
+                    "422": {
+                        "description": "El usuario con el correo electrónico proporcionado ya existe."
+                    },
+                    "default": {
+                        "description": "Ha ocurrido un error."
+                    }
+                }
+            }
+        },
+        "/api/users/{id}/edit": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Obtener detalles de usuario para edición",
+                "description": "Devuelve detalles de usuario, roles y clientes asociados.",
+                "operationId": "a012c28fa457b0217b8b176030361177",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a editar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalles del usuario, roles y clientes.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "properties": {
+                                                "user": {
+                                                    "type": "object"
+                                                },
+                                                "roles": {
+                                                    "type": "object"
+                                                },
+                                                "clients": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Usuario no encontrado."
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Actualizar un usuario",
+                "operationId": "b9091397c8b25f12c6adb74be6ce3a5a",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "role"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "role": {
+                                        "type": "integer",
+                                        "format": "int64"
+                                    },
+                                    "photo": {
+                                        "type": "file",
+                                        "format": "binary"
+                                    },
+                                    "clients": {
+                                        "type": "string",
+                                        "format": "json"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario actualizado exitosamente."
+                    },
+                    "404": {
+                        "description": "El usuario no existe."
+                    },
+                    "422": {
+                        "description": "El correo electrónico ya está en uso por otro usuario."
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Eliminar un usuario",
+                "description": "Elimina un usuario de forma permanente.",
+                "operationId": "fa56cffde745d3f152f95cbacd936c0b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Usuario eliminado correctamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Usuario eliminado correctamente."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "No se puede eliminar este usuario porque tiene clientes asociados.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "No se puede eliminar este usuario porque tiene clientes asociados."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "El usuario no existe.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "type": "string",
+                                            "example": "El usuario no existe."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/userId/{id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Obtener un usuario",
+                "description": "Obtiene los detalles de un usuario por su ID.",
+                "operationId": "e0d989eb2d367e98a0638abf80557a91",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a obtener",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detalles del usuario.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "description": "Detalles del usuario",
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se pudo encontrar el usuario.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No se pudo encontrar el usuario."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/userUpdate/{id}": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Actualizar usuario en perfil",
+                "description": "Actualiza los detalles de un usuario existente.",
+                "operationId": "c3d2395b0a97796b160e724ebebf08e7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario a actualizar",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Datos del usuario a actualizar",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "John Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "john@example.com"
+                                    },
+                                    "photo": {
+                                        "description": "Archivo de imagen del usuario",
+                                        "type": "file",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Usuario actualizado exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Usuario actualizado exitosamente!"
+                                        },
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se pudo encontrar el usuario.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "No se pudo encontrar el usuario."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{id}/newPassword": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Establecer nueva contraseña",
+                "description": "Establece una nueva contraseña para el usuario especificado.",
+                "operationId": "2b85485881ae2f684dfa71b91642363c",
+                "requestBody": {
+                    "description": "Nueva contraseña",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "pass1"
+                                ],
+                                "properties": {
+                                    "pass1": {
+                                        "description": "Nueva contraseña",
+                                        "type": "string",
+                                        "format": "password"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Contraseña guardada exitosamente."
+                    },
+                    "404": {
+                        "description": "No se pudo encontrar el usuario."
+                    }
+                }
+            }
+        },
+        "/api/users/updateState": {
+            "put": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Actualizar estado del usuario",
+                "description": "Actualiza el estado de un usuario (activo/inactivo).",
+                "operationId": "d2de7d2613745063fd754f302cae6ead",
+                "requestBody": {
+                    "description": "Datos de la solicitud",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "id",
+                                    "state"
+                                ],
+                                "properties": {
+                                    "id": {
+                                        "description": "ID del usuario",
+                                        "type": "integer"
+                                    },
+                                    "state": {
+                                        "description": "Nuevo estado del usuario (activo/inactivo)",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Estado actualizado exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Estado actualizado exitosamente a activo"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{id}/accessHistory": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Historial de acceso del usuario",
+                "description": "Obtiene el historial de acceso para un usuario específico.",
+                "operationId": "1cd4141b2d634b19adbdf4ed0903fa62",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del usuario",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Historial de acceso obtenido exitosamente."
+                    },
+                    "404": {
+                        "description": "No se encontró historial de acceso para el usuario."
+                    }
+                }
+            }
+        },
+        "/api/getClientsApi": {
+            "get": {
+                "tags": [
+                    "clients"
+                ],
+                "summary": "Obtener clientes",
+                "description": "Obtiene la lista de clientes.",
+                "operationId": "a7d006ffcc957acb9246eb577f003286",
+                "responses": {
+                    "200": {
+                        "description": "Lista de clientes obtenida exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "integer"
+                                            },
+                                            "name": {
+                                                "type": "string"
+                                            },
+                                            "created_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            },
+                                            "updated_at": {
+                                                "type": "string",
+                                                "format": "date-time"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No se encontraron clientes."
+                    }
+                }
+            }
+        },
+        "/api/dataAdmin": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Obtener datos de administrador",
+                "description": "Obtiene los datos de los usuarios según el rol del administrador autenticado.",
+                "operationId": "162b184ed8ac67f41de507acef99e5c4",
+                "responses": {
+                    "200": {
+                        "description": "Datos obtenidos exitosamente.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "users": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "rol": {
+                                                        "type": "string"
+                                                    },
+                                                    "id": {
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        },
+                                        "userRole": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "No autorizado."
+                    }
+                }
+            }
+        },
+        "/api/getClientUser/{user_id}": {
+            "get": {
+                "tags": [
+                    "users"
+                ],
+                "summary": "Obtener información del consejo asociado a un usuario.",
+                "description": "Devuelve la información del consejo al que está asociado un usuario específico.",
+                "operationId": "c1b83253509e00c2ba4a2d4855b5acda",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "ID del usuario.",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Información del consejo asociado al usuario."
+                    },
+                    "404": {
+                        "description": "No se encontraron datos para el usuario dado."
+                    }
+                }
+            }
+        },
+        "/api/saveSettingsApi": {
+            "post": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Guarda la configuración de ajustes del cliente.",
+                "description": "Guarda la configuración de ajustes del cliente.",
+                "operationId": "c05d2681e98bead405375ce799f23599",
+                "requestBody": {
+                    "description": "Datos de configuración de ajustes del cliente.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "city_council_id"
+                                ],
+                                "properties": {
+                                    "city_council_id": {
+                                        "description": "ID del cliente",
+                                        "type": "integer"
+                                    },
+                                    "logo": {
+                                        "description": "Archivo del logo en formato de imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "color": {
+                                        "description": "Color del cliente",
+                                        "type": "string"
+                                    },
+                                    "pie_de_página": {
+                                        "description": "Texto del pie de página",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Configuración del cliente guardada exitosamente."
+                    },
+                    "400": {
+                        "description": "Los datos proporcionados son incorrectos o incompletos."
+                    },
+                    "500": {
+                        "description": "Ha ocurrido un error al intentar guardar la configuración del cliente."
+                    }
+                }
+            }
+        },
+        "/api/editCityCouncilSettingApi/{id}": {
+            "get": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Mostrar detalles de la configuración de ajustes de cliente para la edición",
+                "description": "Muestra la configuración del cliente para la edición.",
+                "operationId": "032d59ce378a23e055363e76b9cb2e43",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID del cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Devuelve la configuración de ajustes del cliente."
+                    },
+                    "404": {
+                        "description": "La configuración del cliente no fue encontrada."
+                    },
+                    "500": {
+                        "description": "Ha ocurrido un error al intentar obtener la configuración del cliente."
+                    }
+                }
+            }
+        },
+        "/api/updateSettingsCityCouncilApi": {
+            "post": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Actualiza la configuración del cliente",
+                "description": "Actualiza la configuración del cliente.",
+                "operationId": "5262166fe84087ef89425b5988b419bb",
+                "requestBody": {
+                    "description": "Datos de configuración del cliente",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "city_council_id"
+                                ],
+                                "properties": {
+                                    "city_council_id": {
+                                        "description": "ID del cliente",
+                                        "type": "integer"
+                                    },
+                                    "logo": {
+                                        "description": "Archivo del logo en formato de imagen",
+                                        "type": "string",
+                                        "format": "binary"
+                                    },
+                                    "color": {
+                                        "description": "Color del cliente",
+                                        "type": "string"
+                                    },
+                                    "pie_de_página": {
+                                        "description": "Texto del pie de página",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Configuración del cliente actualizada exitosamente."
+                    },
+                    "400": {
+                        "description": "Los datos proporcionados son incorrectos o incompletos."
+                    },
+                    "404": {
+                        "description": "La configuración del cliente no fue encontrada."
+                    },
+                    "500": {
+                        "description": "Ha ocurrido un error al intentar actualizar la configuración del cliente."
+                    }
+                }
+            }
+        },
+        "/api/deleteSettingsApi/{cityCouncilId}": {
+            "delete": {
+                "tags": [
+                    "settings"
+                ],
+                "summary": "Elimina la configuración de ajustes del cliente.",
+                "description": "Elimina la configuración de ajustes del cliente.",
+                "operationId": "0f2ba3e501697a2c3b711d0e9fbdce2f",
+                "parameters": [
+                    {
+                        "name": "cityCouncilId",
+                        "in": "path",
+                        "description": "ID del cliente",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Registros eliminados correctamente."
+                    },
+                    "404": {
+                        "description": "La configuración del cliente no fue encontrada."
+                    },
+                    "500": {
+                        "description": "Ha ocurrido un error al intentar eliminar la configuración del cliente."
+                    }
+                }
+            }
+        }
+    }
+}

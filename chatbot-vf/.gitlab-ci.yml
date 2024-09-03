@@ -1,0 +1,30 @@
+stages:
+  - build
+
+
+Contenedor:
+  stage: build
+  script:
+    - cp $ENVFILE .env
+    # Copiar todo con rsync a /var/www/backend
+    - rsync -r --exclude='composer.lock' --exclude='.git' --exclude='.gitlab-ci.yml' ./ /var/www/web/
+    - cd /var/www/web
+    - npm install 
+    - npm run build
+    - rm -rf node_modules/* .git Dockerfile docker-compose.yml 000-default.conf 
+    - composer update
+    - composer install 
+    - php artisan key:generate 
+    - php artisan lang:publish
+    - php artisan cache:clear 
+    - php artisan optimize
+    - php artisan storage:link
+    - php artisan l5-swagger:generate
+    - sudo supervisorctl restart websocket
+    - sudo supervisorctl restart queues
+
+  only:
+    - master
+  tags:
+    - main
+                             

@@ -1,0 +1,50 @@
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "watch": "vite build --watch"
+    },
+    "devDependencies": {
+        "@popperjs/core": "^2.11.6",
+        "@vitejs/plugin-vue": "^5.0.3",
+        "axios": "^1.6.6",
+        "bootstrap": "^5.2.3",
+        "laravel-vite-plugin": "^1.0.0",
+        "sass": "^1.56.1",
+        "vite": "^5.0.0",
+        "vue": "^3.2.37"
+    },
+    "dependencies": {
+        "@amcharts/amcharts4": "^4.10.38",
+        "@amcharts/amcharts4-fonts": "^4.0.1",
+        "@amcharts/amcharts4-geodata": "^4.1.28",
+        "@ckeditor/ckeditor5-build-classic": "^41.2.0",
+        "@ckeditor/ckeditor5-vue": "^5.1.0",
+        "@ckpack/vue-color": "^1.5.0",
+        "@mdi/font": "^7.4.47",
+        "@tinymce/tinymce-vue": "^5.1.1",
+        "@vitejs/plugin-vue": "^5.0.3",
+        "autolinker": "^4.0.0",
+        "chart.js": "^3.9.1",
+        "drawflow": "^0.0.59",
+        "emoji-js": "^3.8.0",
+        "escape-goat": "^1.3.0",
+        "jquery": "^3.7.1",
+        "laravel-echo": "^1.16.0",
+        "lodash": "^4.17.21",
+        "moment": "^2.30.1",
+        "msgdown": "^1.0.2",
+        "pinia": "^2.1.7",
+        "pusher-js": "^8.4.0-rc2",
+        "sweetalert2": "^11.10.4",
+        "vite": "^5.0.0",
+        "vue": "^3.4.15",
+        "vue-color": "^2.8.1",
+        "vue-loader": "^17.4.2",
+        "vue-router": "^4.2.5",
+        "vuetify": "^3.4.10",
+        "vuex": "^4.1.0"
+    }
+}

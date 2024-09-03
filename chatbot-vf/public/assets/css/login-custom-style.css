@@ -1,0 +1,6 @@
+body.app {
+  background-image: url(/images/foto-diputacion-alicante.jpg?f88d6d65cda69abf382471cd21b1435f) !important;
+  background-size: cover !important;
+  background-position: bottom !important;
+  background-repeat: no-repeat !important;
+}
